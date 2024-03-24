@@ -34,7 +34,7 @@ class MyTheme{
 
 
         titleSmall: TextStyle(
-            fontSize: 18,color: blackColor,fontWeight: FontWeight.w300),
+            fontSize: 16,color: blackColor,fontWeight: FontWeight.w300),
       ) );
 
 }
