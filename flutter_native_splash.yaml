@@ -1,10 +1,10 @@
 flutter_native_splash:
-  color: "#1E1E1E"
+  color: "#ffffff"
   image: assets/images/splash_screen.png
   ios: false
 
   android_12:
-    color: "#1E1E1E"
+    color: "#ffffff"
     image: assets/images/splash_screen.png
     android_gravity: fill
   # The image parameter sets the splash screen icon image.  If this parameter is not specified,
