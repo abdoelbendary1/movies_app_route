@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movies_app_route/model/constants/constants.dart';
 import 'package:movies_app_route/presentation/browse/view/browse_view.dart';
 import 'package:movies_app_route/presentation/home/view/home_view.dart';
 import 'package:movies_app_route/presentation/search/view/search_view.dart';
@@ -22,9 +23,9 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.transparent,
-      appBar: AppBar(
+      /* appBar: AppBar(
         title: Text('app_title', style: Theme.of(context).textTheme.titleLarge),
-      ),
+      ), */
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: selectedIndex,
         onTap: (index) {
@@ -39,21 +40,21 @@ class _HomeScreenState extends State<HomeScreen> {
         selectedItemColor: MyTheme.yellowColor,
         unselectedItemColor: Colors.white,
 
-        items: <BottomNavigationBarItem>[
+        items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: ImageIcon(AssetImage("assets/images/Home .png")),
+            icon: ImageIcon(AssetImage("${Constants.iconPath}Home.png")),
             label: "HOME",
           ),
           BottomNavigationBarItem(
-            icon: ImageIcon(AssetImage("assets/images/search.png")),
+            icon: ImageIcon(AssetImage("${Constants.iconPath}search.png")),
             label: "SEARCH",
           ),
           BottomNavigationBarItem(
-            icon: ImageIcon(AssetImage("assets/images/browse.png")),
+            icon: ImageIcon(AssetImage("${Constants.iconPath}browse.png")),
             label: "BROWSE",
           ),
           BottomNavigationBarItem(
-            icon: ImageIcon(AssetImage("assets/images/watch_list.png")),
+            icon: ImageIcon(AssetImage("${Constants.iconPath}watch_list.png")),
             label: "WATCHLIST",
           ),
         ],
