@@ -24,17 +24,18 @@ class MyTheme{
         showUnselectedLabels: true,
       ),
 
-      textTheme: TextTheme(
-        titleLarge: TextStyle(
-            fontSize: 22,fontWeight: FontWeight.bold,color: whiteColor),
-
-
-        titleMedium: TextStyle(
-            fontSize: 20,color: blackColor,fontWeight: FontWeight.w400),
-
-
-        titleSmall: TextStyle(
-            fontSize: 16,color: blackColor,fontWeight: FontWeight.w300),
-      ) );
+      // textTheme: TextTheme(
+      //   titleLarge: TextStyle(
+      //       fontSize: 22,fontWeight: FontWeight.bold,color: whiteColor),
+      //
+      //
+      //   titleMedium: TextStyle(
+      //       fontSize: 20,color: blackColor,fontWeight: FontWeight.w400),
+      //
+      //
+      //   titleSmall: TextStyle(
+      //       fontSize: 16,color: blackColor,fontWeight: FontWeight.w300),
+     // )
+  );
 
 }
