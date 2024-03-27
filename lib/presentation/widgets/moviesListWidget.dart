@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movies_app_route/presentation/home/view/movieDetailsScreen/movieDeatailScreen.dart';
 import 'package:movies_app_route/presentation/home/viewModel/cubit/homeStates.dart';
 import 'package:movies_app_route/presentation/home/viewModel/cubit/homeViewModel.dart';
 import 'package:movies_app_route/presentation/widgets/posterItem.dart';
@@ -56,60 +57,67 @@ class _MoviesListWidgetState extends State<MoviesListWidget> {
                           return const Center(
                               child: CircularProgressIndicator());
                         } else if (state is UpcomingMovieSuccess) {
-                          return Card(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(5)),
-                            color: Colors.black,
-                            elevation: 10,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                PosterItem(
-                                  height: screenHeight * 0.2,
-                                  width: screenWidth * 0.3,
-                                  movie: state.moviesList[index],
-                                ),
-                                const SizedBox(
-                                  height: 5,
-                                ),
-                                Row(
-                                  children: [
-                                    Icon(
-                                      Icons.star,
-                                      color: MyTheme.yellowColor,
-                                      size: 20,
-                                    ),
-                                    const SizedBox(
-                                      width: 5,
-                                    ),
-                                    Text(
-                                      state.moviesList[index].voteAverage
-                                          .roundToDouble()
-                                          .toString(),
-                                      style: const TextStyle(
-                                          color: Colors.white, fontSize: 10),
-                                    ),
-                                  ],
-                                ),
-                                Text(
-                                  state.moviesList[index].originalTitle,
-                                  style: const TextStyle(
-                                      color: Colors.white, fontSize: 8),
-                                ),
-                                Row(
-                                  children: [
-                                    Text(
-                                      state.moviesList[index].releaseDate.year
-                                          .toString(),
-                                      style: const TextStyle(
-                                          color: Colors.white, fontSize: 10),
-                                    ),
-                                    const SizedBox(
-                                      width: 5,
-                                    ),
-                                  ],
-                                ),
-                              ],
+                          return GestureDetector(
+                            onTap: () {
+                              Navigator.pushNamed(
+                                  context, MovieDeatailScreen.routeName,
+                                  arguments: state.moviesList[index]);
+                            },
+                            child: Card(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(5)),
+                              color: Colors.black,
+                              elevation: 10,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  PosterItem(
+                                    height: screenHeight * 0.2,
+                                    width: screenWidth * 0.3,
+                                    movie: state.moviesList[index],
+                                  ),
+                                  const SizedBox(
+                                    height: 5,
+                                  ),
+                                  Row(
+                                    children: [
+                                      Icon(
+                                        Icons.star,
+                                        color: MyTheme.yellowColor,
+                                        size: 20,
+                                      ),
+                                      const SizedBox(
+                                        width: 5,
+                                      ),
+                                      Text(
+                                        state.moviesList[index].voteAverage
+                                            .roundToDouble()
+                                            .toString(),
+                                        style: const TextStyle(
+                                            color: Colors.white, fontSize: 10),
+                                      ),
+                                    ],
+                                  ),
+                                  Text(
+                                    state.moviesList[index].originalTitle,
+                                    style: const TextStyle(
+                                        color: Colors.white, fontSize: 8),
+                                  ),
+                                  Row(
+                                    children: [
+                                      Text(
+                                        state.moviesList[index].releaseDate.year
+                                            .toString(),
+                                        style: const TextStyle(
+                                            color: Colors.white, fontSize: 10),
+                                      ),
+                                      const SizedBox(
+                                        width: 5,
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
                             ),
                           );
                         } else if (state is UpcomingMovieSuccess) {

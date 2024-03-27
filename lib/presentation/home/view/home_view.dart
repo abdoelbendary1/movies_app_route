@@ -36,7 +36,7 @@ class _HomeViewState extends State<HomeView> {
               const SizedBox(
                 height: 20,
               ),
-              const MoviesListWidget(),
+              MoviesListWidget(),
             ],
           ),
         ),
