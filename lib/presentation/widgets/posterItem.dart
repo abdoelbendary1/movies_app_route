@@ -1,13 +1,16 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/cupertino.dart';
 import 'package:movies_app_route/model/constants/constants.dart';
+import 'package:movies_app_route/model/dataModel/movie/movie.dart';
 
 class PosterItem extends StatelessWidget {
   double height;
   double width;
+  Movie movie;
   PosterItem({
     required this.height,
     required this.width,
+    required this.movie,
   });
   @override
   Widget build(BuildContext context) {
@@ -18,8 +21,8 @@ class PosterItem extends StatelessWidget {
           child: SizedBox(
             height: height,
             width: width,
-            child: Image.asset(
-              "assets/images/poster.jpg",
+            child: Image.network(
+              "${Constants.imgUrl}${movie.posterPath}",
               fit: BoxFit.fill,
             ),
           ),

@@ -2,15 +2,19 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:movies_app_route/model/constants/constants.dart';
+import 'package:movies_app_route/model/dataModel/movie/movie.dart';
 import 'package:movies_app_route/presentation/widgets/posterItem.dart';
+import 'package:movies_app_route/theme/appTheme.dart';
 
 class MainMovieItem extends StatelessWidget {
-  const MainMovieItem({super.key});
+  MainMovieItem({required this.movie});
+  Movie movie;
 
   @override
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
+
     return Stack(
       children: [
         Stack(
@@ -18,10 +22,10 @@ class MainMovieItem extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(15),
               child: SizedBox(
-                height: screenHeight * 0.23,
+                height: screenHeight * 0.18,
                 width: screenWidth,
-                child: Image.asset(
-                  "${Constants.imgPath}poster.jpg",
+                child: Image.network(
+                  "${Constants.imgUrl}${movie.backdropPath}",
                   fit: BoxFit.cover,
                 ),
               ),
@@ -46,30 +50,39 @@ class MainMovieItem extends StatelessWidget {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              PosterItem(height: screenHeight * 0.25, width: screenWidth * 0.3),
+              PosterItem(
+                height: screenHeight * 0.2,
+                width: screenWidth * 0.3,
+                movie: movie,
+              ),
               const SizedBox(
                 width: 20,
               ),
-              const Column(
+              Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Movie discription",
+                    movie.originalTitle,
                     style: TextStyle(
                       color: Colors.white,
                     ),
                   ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    "Movie details",
-                    style: TextStyle(
-                      color: Colors.white,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 5,
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.star,
+                        color: MyTheme.yellowColor,
+                        size: 20,
+                      ),
+                      const SizedBox(
+                        width: 5,
+                      ),
+                      Text(
+                        movie.voteAverage.roundToDouble().toString(),
+                        style:
+                            const TextStyle(color: Colors.white, fontSize: 10),
+                      ),
+                    ],
                   ),
                 ],
               ),
