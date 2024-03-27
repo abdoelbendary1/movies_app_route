@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:movies_app_route/presentation/Login/view/LoginScreen.dart';
+import 'package:movies_app_route/presentation/Regester/view/RegesterScreen.dart';
 import 'package:movies_app_route/presentation/user_home/view/home_screen.dart';
+import 'package:movies_app_route/presentation/welcomeScreen/view/welcomeScreen.dart';
 import 'package:movies_app_route/theme/appTheme.dart';
 
 void main() async {
@@ -21,9 +24,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return  MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: HomeScreen.routeName,
+      initialRoute: WelcomeScreen.routName,
       routes: {
         HomeScreen.routeName: (context) => HomeScreen(),
+        LoginScreen.routName: (context) => LoginScreen(),
+        RegesterScreen.routName: (context) => RegesterScreen(),
+        WelcomeScreen.routName: (context) => WelcomeScreen(),
       },
       theme: MyTheme.lightTheme,
     );
