@@ -2,28 +2,31 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies_app_route/presentation/home/view/movieDetailsScreen/movieDeatailScreen.dart';
+import 'package:movies_app_route/presentation/home/view/movieDetailsScreen/movieDetailsCubit/movieDetailsStates.dart';
+import 'package:movies_app_route/presentation/home/view/movieDetailsScreen/movieDetailsCubit/movieDetailsViewModel.dart';
 import 'package:movies_app_route/presentation/home/viewModel/cubit/homeStates.dart';
 import 'package:movies_app_route/presentation/home/viewModel/cubit/homeViewModel.dart';
 import 'package:movies_app_route/presentation/widgets/posterItem.dart';
 import 'package:movies_app_route/theme/appTheme.dart';
 
-class MoviesListWidget extends StatefulWidget {
-  const MoviesListWidget({super.key});
-  
+class SimilarMoviesListWidget extends StatefulWidget {
+  SimilarMoviesListWidget({super.key, required this.movieId});
+  String movieId;
 
   @override
-  State<MoviesListWidget> createState() => _MoviesListWidgetState();
+  State<SimilarMoviesListWidget> createState() =>
+      _SimilarMoviesListWidgetState();
 }
 
-class _MoviesListWidgetState extends State<MoviesListWidget> {
+class _SimilarMoviesListWidgetState extends State<SimilarMoviesListWidget> {
   @override
   void initState() {
     super.initState();
 
-    homeViewModel.getTopRatedMovies();
+    movieDetailsViewModel.getMovieSimilar(widget.movieId);
   }
 
-  HomeViewModel homeViewModel = HomeViewModel();
+  MovieDetailsViewModel movieDetailsViewModel = MovieDetailsViewModel();
   @override
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
@@ -51,13 +54,14 @@ class _MoviesListWidgetState extends State<MoviesListWidget> {
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) => Padding(
                     padding: const EdgeInsets.only(left: 16, bottom: 8),
-                    child: BlocBuilder<HomeViewModel, HomeStates>(
-                      bloc: homeViewModel,
+                    child:
+                        BlocBuilder<MovieDetailsViewModel, MovieDetailsStates>(
+                      bloc: movieDetailsViewModel,
                       builder: (context, state) {
-                        if (state is UpcomingMovieLoading) {
+                        if (state is SimilarMovieLoading) {
                           return const Center(
                               child: CircularProgressIndicator());
-                        } else if (state is UpcomingMovieSuccess) {
+                        } else if (state is SimilarMovieSuccess) {
                           return GestureDetector(
                             onTap: () {
                               Navigator.pushNamed(
@@ -121,7 +125,7 @@ class _MoviesListWidgetState extends State<MoviesListWidget> {
                               ),
                             ),
                           );
-                        } else if (state is UpcomingMovieSuccess) {
+                        } else if (state is SimilarMovieFailure) {
                           return const Center(child: Text("Error"));
                         }
                         return Container();
