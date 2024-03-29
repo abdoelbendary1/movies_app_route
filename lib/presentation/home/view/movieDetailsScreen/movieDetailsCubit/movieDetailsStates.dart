@@ -19,3 +19,19 @@ class MovieDetailsFailure extends MovieDetailsStates {
     required this.errorMessege,
   });
 }
+
+class SimilarMovieLoading extends MovieDetailsStates {}
+
+class SimilarMovieSuccess extends MovieDetailsStates {
+  List<Movie> moviesList;
+  SimilarMovieSuccess({
+    required this.moviesList,
+  });
+}
+
+class SimilarMovieFailure extends MovieDetailsStates {
+  String errorMessege;
+  SimilarMovieFailure({
+    required this.errorMessege,
+  });
+}

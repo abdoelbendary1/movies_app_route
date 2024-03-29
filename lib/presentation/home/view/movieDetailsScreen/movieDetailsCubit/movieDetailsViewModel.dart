@@ -10,35 +10,23 @@ class MovieDetailsViewModel extends Cubit<MovieDetailsStates> {
   void getMovieDetails(String movieID) async {
     try {
       emit(MovieDetailsLoading());
-      MovieDetails? movie = await ApiManager.fetchMovieDetails(movieID);
+      MovieDetails? movie = await ApiManager.getMovieDetails(movieID);
 
-      emit(MovieDetailsSuccess(
-          movie: movie ??
-              MovieDetails(
-                adult: false,
-                backdropPath: "/1XDDXPXGiI8id7MrUxK36ke7gkX.jpg",
-                homepage: "homepage",
-                id: 15515,
-                imdbId: "imdbId",
-                originalLanguage: "",
-                originalTitle: "originalTitle",
-                overview: "overview",
-                popularity: 1,
-                posterPath: "/kDp1vUBnMpe8ak4rjgl3cLELqjU.jpg",
-                releaseDate: DateTime.now(),
-                revenue: 1,
-                runtime: 1,
-                status: "status",
-                tagline: "tagline",
-                title: "title",
-                video: false,
-                voteAverage: 2,
-                voteCount: 2,
-              )));
+      emit(MovieDetailsSuccess(movie: movie));
     } catch (e) {
       print(e.toString());
       print("error");
       emit(MovieDetailsFailure(errorMessege: e.toString()));
+    }
+  }
+
+  void getMovieSimilar(String movieID) async {
+    try {
+      emit(SimilarMovieLoading());
+      List<Movie> moviesList = await ApiManager.getSimilar(movieID);
+      emit(SimilarMovieSuccess(moviesList: moviesList));
+    } catch (e) {
+      emit(SimilarMovieFailure(errorMessege: e.toString()));
     }
   }
 }

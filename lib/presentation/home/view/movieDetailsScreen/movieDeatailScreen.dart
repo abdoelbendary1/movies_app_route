@@ -7,10 +7,12 @@ import 'package:movies_app_route/model/dataModel/model.dart';
 import 'package:movies_app_route/model/dataModel/movie/movie.dart';
 import 'package:movies_app_route/presentation/home/view/movieDetailsScreen/movieDetailsCubit/movieDetailsStates.dart';
 import 'package:movies_app_route/presentation/home/view/movieDetailsScreen/movieDetailsCubit/movieDetailsViewModel.dart';
+import 'package:movies_app_route/presentation/home/viewModel/cubit/homeViewModel.dart';
 import 'package:movies_app_route/presentation/widgets/UpComingMovies.dart';
 import 'package:movies_app_route/presentation/widgets/mainMovieItem.dart';
 import 'package:movies_app_route/presentation/widgets/moviesListWidget.dart';
 import 'package:movies_app_route/presentation/widgets/posterItem.dart';
+import 'package:movies_app_route/presentation/widgets/similarMoviesList.dart';
 import 'package:movies_app_route/theme/appTheme.dart';
 
 class MovieDeatailScreen extends StatefulWidget {
@@ -23,11 +25,11 @@ class MovieDeatailScreen extends StatefulWidget {
 
 class _MovieDeatailScreenState extends State<MovieDeatailScreen> {
   MovieDetailsViewModel movieDetailsViewModel = MovieDetailsViewModel();
+  HomeViewModel homeViewModel = HomeViewModel();
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    movieDetailsViewModel.getMovieDetails("1011985");
   }
 
   @override
@@ -35,6 +37,7 @@ class _MovieDeatailScreenState extends State<MovieDeatailScreen> {
     double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
     var movie = ModalRoute.of(context)!.settings.arguments as Movie;
+    movieDetailsViewModel.getMovieDetails(movie.id.toString());
 
     return Scaffold(
         appBar: AppBar(
@@ -49,7 +52,7 @@ class _MovieDeatailScreenState extends State<MovieDeatailScreen> {
           builder: (context, state) {
             if (state is MovieDetailsSuccess) {
               print(movie.id);
-              print(state.movie.originalTitle);
+              print(state.movie.title);
               return SingleChildScrollView(
                 child: SizedBox(
                   height: screenHeight,
@@ -87,7 +90,7 @@ class _MovieDeatailScreenState extends State<MovieDeatailScreen> {
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
                           Text(
-                            state.movie.originalTitle,
+                            state.movie.title,
                             style: const TextStyle(
                               color: Colors.white,
                             ),
@@ -97,10 +100,10 @@ class _MovieDeatailScreenState extends State<MovieDeatailScreen> {
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          /* PosterItem(
+                          PosterItem(
                               height: screenHeight * 0.25,
                               width: screenWidth * 0.4,
-                              movie: state.movie), */
+                              movie: movie),
                           Column(
                             children: [
                               SingleChildScrollView(
@@ -109,7 +112,7 @@ class _MovieDeatailScreenState extends State<MovieDeatailScreen> {
                                   height: screenHeight * 0.22,
                                   child: Text(
                                     style: const TextStyle(color: Colors.white),
-                                    state.movie.overview,
+                                    state.movie.overView,
                                   ),
                                 ),
                               ),
@@ -144,7 +147,9 @@ class _MovieDeatailScreenState extends State<MovieDeatailScreen> {
                       const SizedBox(
                         height: 10,
                       ),
-                      const MoviesListWidget()
+                      SimilarMoviesListWidget(
+                        movieId: movie.id.toString(),
+                      ),
                     ],
                   ),
                 ),

@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:dio/dio.dart';
 import 'package:movies_app_route/model/constants/constants.dart';
 import 'package:movies_app_route/model/dataModel/model.dart';
 import 'package:movies_app_route/model/dataModel/movie/movie.dart';
@@ -98,6 +99,38 @@ class ApiManager {
       // Handle any exceptions during the HTTP request
       print('Error fetching movie details: $e');
       return null;
+    }
+  }
+
+  static Future<MovieDetails> getMovieDetails(String movieId) async {
+    final response = await Dio().get(
+        'https://api.themoviedb.org/3/movie/$movieId?api_key=${Constants.apiKey}');
+    if (response.statusCode == 200) {
+      return MovieDetails.fromJson(response.data);
+    } else {
+      throw "";
+    }
+  }
+
+  static Future<MovieDetails> getMovieSimilar(String movieId) async {
+    final response = await Dio().get(
+        'https://api.themoviedb.org/3/movie/$movieId/similar?api_key=${Constants.apiKey}');
+    if (response.statusCode == 200) {
+      return MovieDetails.fromJson(response.data);
+    } else {
+      throw "";
+    }
+  }
+
+  static Future<List<Movie>> getSimilar(String movieId) async {
+    final response = await http.get(Uri.parse(
+        'https://api.themoviedb.org/3/movie/$movieId/similar?api_key=${Constants.apiKey}'));
+    if (response.statusCode == 200) {
+      final json = jsonDecode(response.body)["results"] as List;
+
+      return json.map((movie) => Movie.fromJson(movie)).toList();
+    } else {
+      throw "something wrong happened";
     }
   }
 
