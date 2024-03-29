@@ -55,7 +55,11 @@ class _MainMovieSliderState extends State<MainMovieSlider> {
                   autoPlayAnimationDuration: Duration(seconds: 2),
                 ));
           } else if (state is MainMovieFailure) {
-            return const Center(child: Text("Error"));
+            return Center(
+                child: Text(
+              state.errorMessege,
+              style: TextStyle(color: Colors.white),
+            ));
           }
 
           return Container();

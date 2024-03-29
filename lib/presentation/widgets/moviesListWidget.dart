@@ -19,7 +19,7 @@ class _MoviesListWidgetState extends State<MoviesListWidget> {
   void initState() {
     super.initState();
 
-    homeViewModel.getUpcomingMovies();
+    homeViewModel.getTopRatedMovies();
   }
 
   HomeViewModel homeViewModel = HomeViewModel();
