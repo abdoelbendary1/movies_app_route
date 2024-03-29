@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies_app_route/model/dataModel/movie/movie.dart';
+import 'package:movies_app_route/presentation/home/view/movieDetailsScreen/movieDeatailScreen.dart';
 import 'package:movies_app_route/presentation/home/viewModel/cubit/homeStates.dart';
 import 'package:movies_app_route/presentation/home/viewModel/cubit/homeViewModel.dart';
 import 'package:movies_app_route/presentation/widgets/posterItem.dart';
@@ -58,10 +59,17 @@ class _UpComingMoviesState extends State<UpComingMovies> {
                       if (state is UpcomingMovieLoading) {
                         return const Center(child: CircularProgressIndicator());
                       } else if (state is UpcomingMovieSuccess) {
-                        return PosterItem(
-                          height: screenHeight * 0.2,
-                          width: screenWidth * 0.25,
-                          movie: state.moviesList[index],
+                        return GestureDetector(
+                          onTap: () {
+                            Navigator.pushNamed(
+                                context, MovieDeatailScreen.routeName,
+                                arguments: state.moviesList[index]);
+                          },
+                          child: PosterItem(
+                            height: screenHeight * 0.2,
+                            width: screenWidth * 0.25,
+                            movie: state.moviesList[index],
+                          ),
                         );
                       } else if (state is UpcomingMovieSuccess) {
                         return const Center(

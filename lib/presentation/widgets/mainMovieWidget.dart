@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies_app_route/model/dataModel/movie/movie.dart';
+import 'package:movies_app_route/presentation/home/view/movieDetailsScreen/movieDeatailScreen.dart';
 import 'package:movies_app_route/presentation/home/viewModel/cubit/homeStates.dart';
 import 'package:movies_app_route/presentation/home/viewModel/cubit/homeViewModel.dart';
 import 'package:movies_app_route/presentation/widgets/mainMovieItem.dart';
@@ -37,7 +38,11 @@ class _MainMovieSliderState extends State<MainMovieSlider> {
                 itemCount: state.moviesList.length,
                 itemBuilder: (context, itemIndex, pageViewIndex) =>
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.pushNamed(
+                            context, MovieDeatailScreen.routeName,
+                            arguments: state.moviesList[itemIndex]);
+                      },
                       child: MainMovieItem(
                         movie: state.moviesList[itemIndex],
                       ),
@@ -50,7 +55,11 @@ class _MainMovieSliderState extends State<MainMovieSlider> {
                   autoPlayAnimationDuration: Duration(seconds: 2),
                 ));
           } else if (state is MainMovieFailure) {
-            return const Center(child: Text("Error"));
+            return Center(
+                child: Text(
+              state.errorMessege,
+              style: TextStyle(color: Colors.white),
+            ));
           }
 
           return Container();
