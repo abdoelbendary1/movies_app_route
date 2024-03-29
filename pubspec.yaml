@@ -28,22 +28,21 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  bloc: ^8.1.4
   carousel_slider: ^4.2.1
   cupertino_icons: ^1.0.6
   device_preview: ^1.1.0
   flutter:
     sdk: flutter
+  flutter_bloc: ^8.1.5
   flutter_localizations:
     sdk: flutter
   flutter_native_splash: ^2.3.7
   http: ^1.2.1
   intl: any
-  flutter_bloc: ^8.1.5
-
   provider: ^6.1.1
 
 dev_dependencies:
-  
   flutter_lints: ^3.0.0
   flutter_test:
     sdk: flutter
