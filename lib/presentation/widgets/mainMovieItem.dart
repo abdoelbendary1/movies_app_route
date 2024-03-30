@@ -63,16 +63,17 @@ class MainMovieItem extends StatelessWidget {
                 children: [
                   Text(
                     movie.originalTitle,
-                    style: TextStyle(
-                      color: Colors.white,
-                    ),
+                    style: TextStyle(color: Colors.white, fontSize: 20),
+                  ),
+                  SizedBox(
+                    height: 10,
                   ),
                   Row(
                     children: [
                       Icon(
                         Icons.star,
                         color: MyTheme.yellowColor,
-                        size: 20,
+                        size: 30,
                       ),
                       const SizedBox(
                         width: 5,
@@ -80,7 +81,7 @@ class MainMovieItem extends StatelessWidget {
                       Text(
                         movie.voteAverage.roundToDouble().toString(),
                         style:
-                            const TextStyle(color: Colors.white, fontSize: 10),
+                            const TextStyle(color: Colors.white, fontSize: 20),
                       ),
                     ],
                   ),

@@ -89,66 +89,79 @@ class _MovieDeatailScreenState extends State<MovieDeatailScreen> {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
-                          Text(
-                            state.movie.title,
-                            style: const TextStyle(
-                              color: Colors.white,
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 20),
+                            child: Text(
+                              state.movie.title,
+                              style: const TextStyle(
+                                  color: Colors.white, fontSize: 25),
                             ),
+                          ),
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              PosterItem(
+                                  height: screenHeight * 0.30,
+                                  width: screenWidth * 0.4,
+                                  movie: movie),
+                              Padding(
+                                padding: const EdgeInsets.all(16.0),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    SizedBox(
+                                      width: screenWidth * 0.5,
+                                      height: screenHeight * 0.2,
+                                      child: Text(
+                                        style: const TextStyle(
+                                            color: Colors.white, fontSize: 13),
+                                        state.movie.overView,
+                                      ),
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: [
+                                        Icon(
+                                          Icons.star,
+                                          color: MyTheme.yellowColor,
+                                          size: 40,
+                                        ),
+                                        const SizedBox(
+                                          width: 5,
+                                        ),
+                                        Text(
+                                          state.movie.voteAverage
+                                              .roundToDouble()
+                                              .toString(),
+                                          style: const TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 30),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              )
+                            ],
                           ),
                         ],
                       ),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          PosterItem(
-                              height: screenHeight * 0.25,
-                              width: screenWidth * 0.4,
-                              movie: movie),
-                          Column(
-                            children: [
-                              SingleChildScrollView(
-                                child: SizedBox(
-                                  width: screenWidth * 0.4,
-                                  height: screenHeight * 0.22,
-                                  child: Text(
-                                    style: const TextStyle(color: Colors.white),
-                                    state.movie.overView,
-                                  ),
-                                ),
-                              ),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Row(
-                                    children: [
-                                      Icon(
-                                        Icons.star,
-                                        color: MyTheme.yellowColor,
-                                        size: 20,
-                                      ),
-                                      const SizedBox(
-                                        width: 5,
-                                      ),
-                                      Text(
-                                        state.movie.voteAverage
-                                            .roundToDouble()
-                                            .toString(),
-                                        style: const TextStyle(
-                                            color: Colors.white, fontSize: 10),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ],
-                          )
-                        ],
-                      ),
                       const SizedBox(
-                        height: 10,
+                        height: 20,
                       ),
-                      SimilarMoviesListWidget(
-                        movieId: movie.id.toString(),
+                      Expanded(
+                        child: Row(
+                          children: [
+                            SizedBox(
+                              height: screenHeight * 0.7,
+                              child: SimilarMoviesListWidget(
+                                movieId: movie.id.toString(),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),

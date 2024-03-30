@@ -69,11 +69,7 @@ class _SimilarMoviesListWidgetState extends State<SimilarMoviesListWidget> {
                                   context, MovieDeatailScreen.routeName,
                                   arguments: state.moviesList[index]);
                             },
-                            child: Card(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(5)),
-                              color: Colors.black,
-                              elevation: 10,
+                            child: Expanded(
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
@@ -82,7 +78,7 @@ class _SimilarMoviesListWidgetState extends State<SimilarMoviesListWidget> {
                                     width: screenWidth * 0.3,
                                     movie: state.moviesList[index],
                                   ),
-                                  const SizedBox(
+                                  /*  const SizedBox(
                                     height: 5,
                                   ),
                                   Row(
@@ -122,6 +118,7 @@ class _SimilarMoviesListWidgetState extends State<SimilarMoviesListWidget> {
                                       ),
                                     ],
                                   ),
+                                 */
                                 ],
                               ),
                             ),
