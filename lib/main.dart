@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:movies_app_route/presentation/Login/view/LoginScreen.dart';
 import 'package:movies_app_route/presentation/Regester/view/RegesterScreen.dart';
+import 'package:movies_app_route/presentation/browse/view/moviesByGenreScreen.dart';
 import 'package:movies_app_route/presentation/home/view/movieDetailsScreen/movieDeatailScreen.dart';
 import 'package:movies_app_route/presentation/home/view/movieDetailsScreen/movieDetailsCubit/movieDetailsViewModel.dart';
 import 'package:movies_app_route/presentation/user_home/view/home_screen.dart';
@@ -37,6 +38,7 @@ class MyApp extends StatelessWidget {
         RegesterScreen.routName: (context) => RegesterScreen(),
         WelcomeScreen.routName: (context) => WelcomeScreen(),
         MovieDeatailScreen.routeName: (context) => MovieDeatailScreen(),
+        MoviesByGenreScreen.routeName :(context) => MoviesByGenreScreen(),
       },
       theme: MyTheme.lightTheme,
     );
