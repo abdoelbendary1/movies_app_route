@@ -15,6 +15,7 @@ class Movie {
   bool video;
   double voteAverage;
   int voteCount;
+  bool isWatchList;
 
   Movie({
     required this.adult,
@@ -31,6 +32,7 @@ class Movie {
     required this.video,
     required this.voteAverage,
     required this.voteCount,
+    this.isWatchList = false,
   });
 
   factory Movie.fromJson(Map<String, dynamic> json) => Movie(
@@ -50,6 +52,7 @@ class Movie {
         video: json["video"],
         voteAverage: json["vote_average"]?.toDouble(),
         voteCount: json["vote_count"],
+        isWatchList: json["isWatchList"] ?? false,
       );
 
   Map<String, dynamic> toJson() => {
@@ -68,5 +71,6 @@ class Movie {
         "video": video,
         "vote_average": voteAverage,
         "vote_count": voteCount,
+        "isWatchList": isWatchList,
       };
 }

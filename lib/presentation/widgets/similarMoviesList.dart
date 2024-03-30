@@ -22,6 +22,7 @@ class _SimilarMoviesListWidgetState extends State<SimilarMoviesListWidget> {
   @override
   void initState() {
     super.initState();
+    print(widget.movieId);
 
     movieDetailsViewModel.getMovieSimilar(widget.movieId);
   }
@@ -45,7 +46,7 @@ class _SimilarMoviesListWidgetState extends State<SimilarMoviesListWidget> {
               const Padding(
                 padding: EdgeInsets.only(left: 16, bottom: 16, top: 8),
                 child: Text(
-                  "Recommended",
+                  "You might like this",
                   style: TextStyle(color: Colors.white, fontSize: 20),
                 ),
               ),

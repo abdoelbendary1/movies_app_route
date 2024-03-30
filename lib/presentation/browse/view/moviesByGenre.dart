@@ -1,13 +1,16 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-import 'package:movies_app_route/model/dataModel/movie/genre/genre.dart';
+import 'package:flutter/widgets.dart';
+import 'package:movies_app_route/model/constants/constants.dart';
+import 'package:movies_app_route/model/dataModel/movie/movie.dart';
 
-class BrowesItem extends StatelessWidget {
-  Genres genre;
-  BrowesItem({
+class MoviesByGenreItem extends StatelessWidget {
+  Movie movie;
+  MoviesByGenreItem({
     Key? key,
-    required this.genre,
+    required this.movie,
   }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     double hiegt = MediaQuery.of(context).size.height;
@@ -21,10 +24,10 @@ class BrowesItem extends StatelessWidget {
               borderRadius: const BorderRadius.only(
                   topRight: Radius.circular(20),
                   bottomLeft: Radius.circular(20)),
-              child: Image.asset(
+              child: Image.network(
                 width: width * 0.4,
                 height: hiegt * 0.5,
-                'assets/images/poster.jpg',
+                "${Constants.imgUrl}${movie.posterPath}",
                 fit: BoxFit.cover,
               )),
           Container(
@@ -37,7 +40,7 @@ class BrowesItem extends StatelessWidget {
                 )),
             child: Center(
               child: Text(
-                genre.name,
+                movie.title,
                 style: Theme.of(context).textTheme.titleLarge,
               ),
             ),

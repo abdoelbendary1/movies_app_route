@@ -33,7 +33,6 @@ class _MainMovieSliderState extends State<MainMovieSlider> {
           if (state is MainMovieLoading) {
             return const Center(child: CircularProgressIndicator());
           } else if (state is MainMovieSuccess) {
-            print(state.moviesList);
             return CarouselSlider.builder(
                 itemCount: state.moviesList.length,
                 itemBuilder: (context, itemIndex, pageViewIndex) =>
@@ -52,13 +51,13 @@ class _MainMovieSliderState extends State<MainMovieSlider> {
                   autoPlayCurve: Curves.fastEaseInToSlowEaseOut,
                   enlargeCenterPage: true,
                   viewportFraction: 1,
-                  autoPlayAnimationDuration: Duration(seconds: 2),
+                  autoPlayAnimationDuration: const Duration(seconds: 2),
                 ));
           } else if (state is MainMovieFailure) {
             return Center(
                 child: Text(
               state.errorMessege,
-              style: TextStyle(color: Colors.white),
+              style: const TextStyle(color: Colors.white),
             ));
           }
 
