@@ -19,27 +19,39 @@ class _SearchViewState extends State<SearchView> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          leading: const Text(''),
-          backgroundColor: const Color(0x3329292c),
-          shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(100),
-                  bottomRight: Radius.circular(100))),
+          leading: Icon(
+            Icons.arrow_back,
+            color: MyTheme.whiteColor,
+            size: 35,
+          ),
+          // backgroundColor: MyTheme.blackColor,
+          // shape: const RoundedRectangleBorder(
+          //     borderRadius: BorderRadius.only(
+          //         bottomLeft: Radius.circular(100),
+          //         bottomRight: Radius.circular(100))),
           toolbarHeight: 150,
           title: Container(
-              margin: const EdgeInsets.all(20),
-              padding: const EdgeInsets.all(10),
+              width: double.infinity,
+              margin: const EdgeInsets.all(5),
+              padding: const EdgeInsets.all(5),
               decoration: BoxDecoration(
                   color: Colors.black,
                   borderRadius: BorderRadius.circular(35),
-                  border: Border.all(color: MyTheme.yellowColor, width: 3)),
+                  border: Border.all(color: MyTheme.whiteColor, width: 3)),
               child: IconButton(
                   onPressed: () {
                     showSearch(context: context, delegate: SearchWidget());
                   },
-                  icon: const Icon(
-                    Icons.search,
-                    size: 30,
+                  icon: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      const SizedBox(width: 10),
+                      Icon(
+                        Icons.search,
+                        color: MyTheme.whiteColor,
+                        size: 30,
+                      ),
+                    ],
                   ))),
         ),
         body: BlocBuilder<SearchViewModel, SearchStates>(
@@ -62,3 +74,43 @@ class _SearchViewState extends State<SearchView> {
         ));
   }
 }
+//appBar: AppBar(
+//         leading: Icon(Icons.arrow_back,color: MyTheme.yellowColor,size: 35,),
+//         backgroundColor:MyTheme.blackColor,
+//         toolbarHeight: 150,
+//         title: Container(
+//
+//           width: double.infinity,
+//             // margin: EdgeInsets.all(20),
+//             // padding: EdgeInsets.all(10),
+//             decoration: BoxDecoration(
+//                 color: MyTheme.greyColor,
+//                 borderRadius: BorderRadius.circular(35),
+//                 border: Border.all(color: MyTheme.yellowColor, width: 3)),
+//             child: IconButton(
+//                 onPressed: () {
+//                   showSearch(context: context,
+//                       delegate: SearchWidget());
+//                 },
+//                 icon: Row(
+//                   mainAxisAlignment: MainAxisAlignment.start,
+//                   children: [
+//                     const SizedBox(width: 10),
+//                     Icon(
+//                       Icons.search,color: MyTheme.yellowColor,
+//                       size:30,
+//                     ),
+//                   ],
+//                 ))),
+//       ),
+//       body: Container(
+//         decoration: BoxDecoration(
+//           color: MyTheme.blackColor
+//         ),
+//         child: Center(
+//           child: Image.asset('assets/images/Group 25.png'),
+//         ),
+//       ),
+//     );
+//   }
+// }

@@ -25,21 +25,26 @@ class _BrowseViewState extends State<BrowseView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: Text(
-              'Watch List',
+      appBar: AppBar(
+        leading: Icon(
+          Icons.arrow_back,
+          color: MyTheme.yellowColor,
+          size: 35,
+        ),
+        backgroundColor: MyTheme.blackColor,
+        toolbarHeight: 100,
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text(
+              "Browse Category",
               style: Theme.of(context).textTheme.titleLarge,
             ),
-          ),
-          Divider(
-            color: MyTheme.yellowColor,
-            thickness: 1,
-            indent: 15,
-            endIndent: 15,
-          ),
+          ],
+        ),
+      ),
+      body: Column(
+        children: [
           Expanded(
               child: BlocBuilder<GenreViewModel, GenreStates>(
             bloc: genreViewModel,

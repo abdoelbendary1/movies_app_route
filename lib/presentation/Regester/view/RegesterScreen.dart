@@ -30,19 +30,19 @@ class _RegesterScreenState extends State<RegesterScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(15.0),
-              child: Image.asset(
-                'assets/images/Group 24.png',
-                width: MediaQuery.of(context).size.width * 0.38,
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(5),
+                child: Image.asset(
+                  'assets/images/Group 24.png',
+                  width: MediaQuery.of(context).size.width * 0.25,
+                ),
               ),
-            ),
-            Container(
-              padding: EdgeInsets.all(10),
-              child: SingleChildScrollView(
+              Container(
+                padding: EdgeInsets.all(5),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -95,13 +95,13 @@ class _RegesterScreenState extends State<RegesterScreen> {
                                   return 'please enter Password';
                                 }
                                 if (text.length < 6) {
-                                  return 'password shouid contain more than 6 char';
+                                  return 'password should contain more than 6 char';
                                 }
                                 return null;
                               },
                             ),
                             Padding(
-                                padding: const EdgeInsets.all(25.0),
+                                padding: const EdgeInsets.all(20.0),
                                 child: InkWell(
                                     onTap: () {
                                       if (obscureText == false) {
@@ -164,7 +164,7 @@ class _RegesterScreenState extends State<RegesterScreen> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.all(18.0),
+                      padding: const EdgeInsets.all(5.0),
                       child: ElevatedButton(
                           style: ButtonStyle(
                               fixedSize:
@@ -190,8 +190,8 @@ class _RegesterScreenState extends State<RegesterScreen> {
                   ],
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

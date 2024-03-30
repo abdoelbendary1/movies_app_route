@@ -25,31 +25,34 @@ class _WatchListViewState extends State<WatchListView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(12.0),
-        child: Column(
+      appBar: AppBar(
+        leading: Icon(
+          Icons.arrow_back,
+          color: MyTheme.yellowColor,
+          size: 35,
+        ),
+        backgroundColor: MyTheme.blackColor,
+        toolbarHeight: 100,
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                'Watch List',
-                style: Theme.of(context).textTheme.titleLarge,
-              ),
+            Text(
+              "Watch List",
+              style: Theme.of(context).textTheme.titleLarge,
             ),
-            Divider(
-              color: MyTheme.yellowColor,
-              thickness: 1,
-            ),
-            Expanded(
-                child: BlocBuilder<WatchListViewModel, WatchListStates>(
-              bloc: watchListViewModel,
-              builder: (context, state) {
-                if (state is WatchListLoadig) {
-                  return const Center(child: CircularProgressIndicator());
-                } else if (state is WatchListSuccess) {
-                  return ListView.separated(
-                    itemBuilder: (context, index) {
-                      return WatchListItem(
+          ],
+        ),
+      ),
+      body: Expanded(
+          child: BlocBuilder<WatchListViewModel, WatchListStates>(
+        bloc: watchListViewModel,
+        builder: (context, state) {
+          if (state is WatchListLoadig) {
+            return const Center(child: CircularProgressIndicator());
+          } else if (state is WatchListSuccess) {
+            return ListView.separated(
+              itemBuilder: (context, index) {
+                return WatchListItem(
                         movie: state.moviesList[index],
                       );
                     },
@@ -69,9 +72,6 @@ class _WatchListViewState extends State<WatchListView> {
                 return Container();
               },
             )),
-          ],
-        ),
-      ),
     );
   }
 }
