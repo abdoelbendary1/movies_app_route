@@ -8,6 +8,7 @@ import 'package:movies_app_route/presentation/browse/viewModel/browseCubit/genre
 import 'package:movies_app_route/presentation/browse/viewModel/browseCubit/genreViewModel.dart';
 import 'package:movies_app_route/presentation/browse/viewModel/moviesByGenreCubit/moviesByGenreStates.dart';
 import 'package:movies_app_route/presentation/browse/viewModel/moviesByGenreCubit/moviesByGenreViewModel.dart';
+import 'package:movies_app_route/presentation/home/view/movieDetailsScreen/movieDeatailScreen.dart';
 import 'package:movies_app_route/theme/appTheme.dart';
 
 class MoviesByGenreScreen extends StatefulWidget {
@@ -67,7 +68,11 @@ class _MoviesByGenreScreenState extends State<MoviesByGenreScreen> {
                       mainAxisSpacing: 5),
                   itemBuilder: (context, index) {
                     return GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.pushNamed(
+                              context, MovieDeatailScreen.routeName,
+                              arguments: state.moviesList[index]);
+                        },
                         child:
                             MoviesByGenreItem(movie: state.moviesList[index]));
                   },

@@ -106,36 +106,50 @@ class SearchWidget extends SearchDelegate {
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    // TODO: implement buildSuggestions
-    List<String> matchQuery = [];
-    /*  for (var fruit in searchTerms) {
-      if (fruit.toLowerCase().contains(query.toLowerCase())) {
-        matchQuery.add(fruit);
-      }
-      // else{
-      //   return Center(
-      //       child: Column(
-      //         mainAxisAlignment: MainAxisAlignment.center,
-      //         children: [
-      //           Image.asset('assets/images/Group 25.png'),
-      //           Text('Movie not found',style: Theme.of(context).textTheme.titleLarge!.copyWith(
-      //               fontSize: 16
-      //           ),),
-      //         ],
-      //       ));
-      // }
-    } */
-    return ListView.separated(
-      itemCount: matchQuery.length,
-      itemBuilder: (context, index) {
-        var result = matchQuery[index];
-        return const Text("data");
-      },
-      separatorBuilder: (BuildContext context, int index) {
-        return Divider(
-          color: MyTheme.yellowColor,
-        );
-      },
-    );
+    return FutureBuilder(
+        future: ApiManager.getPopularMovies(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          } else if (snapshot.connectionState == ConnectionState.done) {
+            if (snapshot.data != null) {
+              return ListView.builder(
+                  itemCount: snapshot.data?.length ?? [].length,
+                  itemBuilder: (context, index) => WatchListItem(
+                      movie: snapshot.data?[index] ??
+                          Movie(
+                              adult: false,
+                              backdropPath: "/1XDDXPXGiI8id7MrUxK36ke7gkX.jpg",
+                              genreIds: [28, 12, 16, 35, 10751],
+                              id: 1011985,
+                              originalLanguage: OriginalLanguage.EN,
+                              originalTitle: "Kung Fu Panda 4",
+                              overview:
+                                  "Po is gearing up to become the spiritual leader of his Valley of Peace, but also needs someone to take his place as Dragon Warrior. As such, he will train a new kung fu practitioner for the spot and will encounter a villain called the Chameleon who conjures villains from the past.",
+                              popularity: 4028.167,
+                              posterPath: "/kDp1vUBnMpe8ak4rjgl3cLELqjU.jpg",
+                              releaseDate: DateTime.now(),
+                              title: "Kung Fu Panda 4",
+                              video: false,
+                              voteAverage: 6.938,
+                              voteCount: 379)));
+            } else {
+              return const Text(
+                "Error ",
+                style: TextStyle(color: Colors.blue),
+              );
+            }
+          } else if (snapshot.connectionState == ConnectionState.none) {
+            return const Text(
+              "error",
+              style: TextStyle(color: Colors.amber),
+            );
+          } else {
+            return const Text(
+              "Error ",
+              style: TextStyle(color: Colors.white),
+            );
+          }
+        });
   }
 }
