@@ -9,7 +9,6 @@ import 'package:movies_app_route/theme/appTheme.dart';
 
 class MoviesListWidget extends StatefulWidget {
   const MoviesListWidget({super.key});
-  
 
   @override
   State<MoviesListWidget> createState() => _MoviesListWidgetState();
@@ -74,48 +73,68 @@ class _MoviesListWidgetState extends State<MoviesListWidget> {
                                 children: [
                                   PosterItem(
                                     height: screenHeight * 0.2,
-                                    width: screenWidth * 0.3,
+                                    width: screenWidth * 0.35,
                                     movie: state.moviesList[index],
                                   ),
                                   const SizedBox(
                                     height: 5,
                                   ),
-                                  Row(
-                                    children: [
-                                      Icon(
-                                        Icons.star,
-                                        color: MyTheme.yellowColor,
-                                        size: 20,
-                                      ),
-                                      const SizedBox(
-                                        width: 5,
-                                      ),
-                                      Text(
-                                        state.moviesList[index].voteAverage
-                                            .roundToDouble()
-                                            .toString(),
-                                        style: const TextStyle(
-                                            color: Colors.white, fontSize: 10),
-                                      ),
-                                    ],
-                                  ),
-                                  Text(
-                                    state.moviesList[index].originalTitle,
-                                    style: const TextStyle(
-                                        color: Colors.white, fontSize: 8),
-                                  ),
-                                  Row(
-                                    children: [
-                                      Text(
-                                        state.moviesList[index].releaseDate.year
-                                            .toString(),
-                                        style: const TextStyle(
-                                            color: Colors.white, fontSize: 10),
-                                      ),
-                                      const SizedBox(
-                                        width: 5,
-                                      ),
-                                    ],
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Row(
+                                          children: [
+                                            Icon(
+                                              Icons.star,
+                                              color: MyTheme.yellowColor,
+                                              size: 20,
+                                            ),
+                                            const SizedBox(
+                                              width: 5,
+                                            ),
+                                            Text(
+                                              state
+                                                  .moviesList[index].voteAverage
+                                                  .roundToDouble()
+                                                  .toString(),
+                                              style: const TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 15),
+                                            ),
+                                          ],
+                                        ),
+                                        const SizedBox(
+                                          height: 5,
+                                        ),
+                                        Text(
+                                          state.moviesList[index].originalTitle,
+                                          style: const TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 10),
+                                        ),
+                                        const SizedBox(
+                                          height: 5,
+                                        ),
+                                        Row(
+                                          children: [
+                                            Text(
+                                              state.moviesList[index]
+                                                  .releaseDate.year
+                                                  .toString(),
+                                              style: const TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 15),
+                                            ),
+                                            const SizedBox(
+                                              width: 5,
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ],
                               ),
